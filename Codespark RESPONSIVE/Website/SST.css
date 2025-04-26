@@ -1,0 +1,583 @@
+/* Keep existing styles for *, .navbar, .navbar__container, .logo, .navbar__menu, etc. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar{
+  background: white;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid #eee; /* Optional: adds subtle separation */
+}
+
+.navbar__container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically center items */
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.logo{
+ /* margin-right: 500px; Remove fixed margin if needed for responsiveness */
+  height: 60px; /* Adjust size as needed */
+  width: auto;
+  object-fit: contain; /* Prevents distortion */
+}
+
+.navbar__menu{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  margin-left: auto; /* Push menu to the right */
+}
+
+.navbar__item{
+  height: 80px; /* Ensure items fill navbar height */
+  display: flex; /* Align link vertically */
+  align-items: center; /* Align link vertically */
+}
+
+.navbar__links{
+  color: #2e3a6e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.navbar__links:hover{
+  color: #647be5;
+  transition: all 0.3s ease;
+}
+
+/* Dropdown Styles */
+.navbar__item {
+position: relative; /* Needed for absolute positioning of dropdown */
+}
+
+.navbar__dropdown {
+display: none; /* Hide by default */
+position: absolute;
+top: 100%; /* Position below the navbar item */
+left: 0;
+background-color: white;
+min-width: 160px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+z-index: 1000;
+/* Removed flex-direction as display: block on links handles layout */
+}
+
+.navbar__dropdown-link {
+padding: 12px 16px; /* Adjust padding */
+color: #2e3a6e;
+text-decoration: none;
+display: block; /* Make links take full width */
+text-align: left; /* Align text left */
+}
+
+.navbar__dropdown-link:hover {
+background-color: #f0f0f0;
+}
+
+
+/* --- Navbar Mobile Styles --- */
+@media screen and (max-width: 960px){
+  .navbar__container{
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      z-index: 1;
+      width: 100%;
+      /* max-width: 1300%; <-- This seems incorrect, remove or set to 100% */
+      max-width: 100%;
+      padding: 0 25px; /* Adjust padding for mobile */
+  }
+
+  .navbar__menu{
+      display: grid; /* Changed from flex to grid */
+      grid-template-columns: auto;
+      margin: 0;
+      width: 100%;
+      position: absolute;
+      top: 80px; /* Position below navbar */
+      left: -100%; /* Start off screen */
+      opacity: 1; /* Make visible when active */
+      transition: all 0.5s ease;
+      /* height: 50vh; <-- Let height be auto */
+      z-index: 998; /* Below navbar but above content */
+      background: white;
+      padding-bottom: 20px; /* Add some padding */
+  }
+
+  .navbar__menu.active{
+      /* background: white; <-- Already set */
+      left: 0; /* Slide in */
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 998;
+      /* height: 50vh; <-- Let height be auto */
+      font-size: 1.6rem;
+  }
+
+  /* Removed #navbar__logo specific style */
+
+  .navbar__toggle .bar{
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background: #2e3a6e;
+      display: block; /* Ensure bars are visible */
+      cursor: pointer;
+  }
+
+  .navbar__item{
+      width: 100%;
+      height: auto; /* Adjust height */
+  }
+
+  .navbar__links{
+      text-align: center;
+      padding: 1.5rem; /* Adjust padding */
+      width: 100%;
+      display: table; /* Keep as table for centering */
+  }
+
+  #mobile-menu{
+      position: absolute;
+      top: 50%; /* Center vertically */
+      right: 25px; /* Adjust position */
+      transform: translateY(-50%); /* Fine-tune vertical centering */
+      cursor: pointer; /* Add cursor */
+  }
+
+  /* Removed .navbar__toggle .bar display: block; (already set above) */
+
+  #mobile-menu.is-active .bar:nth-child(2){
+      opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1){
+      transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3){
+      transform: translateY(-8px) rotate(-45deg);
+  }
+
+   /* Dropdown adjustments for mobile */
+  .navbar__dropdown {
+      position: static; /* Change from absolute */
+      box-shadow: none;
+      border-top: 1px solid #eee;
+      min-width: 100%;
+  }
+  .navbar__dropdown-link {
+      text-align: center;
+  }
+  .navbar__item:hover .navbar__dropdown {
+      /* Prevent hover dropdown on mobile if using click */
+       display: none;
+  }
+  /* Ensure dropdown controlled by JS is shown */
+  .navbar__dropdown[style*="block"] {
+      display: block !important;
+  }
+
+}
+
+
+/* --- Map Section --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  /* height: 100vh; <-- Remove fixed height */
+  min-height: 100vh; /* Ensure it takes at least full height */
+  /* overflow: hidden; <-- Remove this to allow scrolling on mobile */
+  font-family: 'Poppins', sans-serif; /* Use Poppins consistently */
+  display: flex;
+  flex-direction: column;
+}
+
+.main-bg {
+  background-color: #4a599a;
+  flex-grow: 1; /* Allows this section to grow and fill space */
+  padding: 20px; /* Add some padding */
+  display: flex;
+  flex-direction: column; /* Stack top-bar and map-container */
+}
+
+#top-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased gap slightly */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens before media query */
+  padding: 0 10px; /* Add some horizontal padding */
+  width: 100%;
+  max-width: 1200px; /* Limit max width */
+  margin-left: auto; /* Center */
+  margin-right: auto; /* Center */
+}
+
+#search-wrapper {
+  position: relative;
+  /* width: 400px; <-- Let it be flexible */
+  flex-grow: 1; /* Allow search to take available space */
+  max-width: 400px; /* But limit its max size */
+  margin-bottom: 0; /* Remove bottom margin for flex alignment */
+}
+
+#search {
+  font-size: 16px; /* Slightly smaller font */
+  padding: 10px 14px;
+  width: 100%; /* Make input fill wrapper */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.floor-buttons {
+  display: flex;
+  gap: 10px; /* Add gap between buttons */
+  margin-top: 0; /* Remove negative margin */
+}
+
+.floor-buttons button {
+  padding: 8px 15px; /* Adjust padding */
+  font-size: 16px; /* Adjust font size */
+  cursor: pointer;
+  border: 2px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.floor-buttons button:hover {
+  background-color: #f0f0f0;
+}
+
+.floor-buttons button.active {
+  background-color: #c9e2e7;
+  color: #000000;
+  font-weight: bold;
+  border: 2px solid #3D80C4; /* Adjusted border thickness */
+}
+
+#suggestions.dropdown {
+  position: absolute;
+  top: 100%; /* Position below search input */
+  left: 0;
+  right: 0; /* Make it span the wrapper width */
+  /* width: 372px; <-- Remove fixed width */
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none; /* Avoid double border */
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000; /* Ensure it's above map */
+  display: none; /* Handled by JS */
+  border-radius: 0 0 4px 4px;
+}
+
+.dropdown div {
+  padding: 8px 12px; /* Adjust padding */
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.dropdown div:hover,
+.dropdown div.active {
+  background: #eee;
+}
+
+
+.map-container {
+  display: flex; /* Keep using flex for centering */
+  justify-content: center;
+  align-items: flex-start; /* Align maps to the top */
+  /* margin: 0 auto; <-- Already centered by flex */
+  padding: 0; /* Remove padding if not needed */
+  width: 100%; /* Take full width */
+  max-width: 1000px; /* Match image max-width */
+  box-sizing: border-box;
+  margin: 20px auto 0 auto; /* Add top margin, center horizontally */
+  overflow: hidden; /* Hide parts of non-active maps if needed */
+  position: relative; /* For absolute positioning of maps inside */
+}
+
+.map {
+  /* width: 1600px; <-- Remove fixed width */
+  width: 100%; /* Make map fill container */
+  height: auto;
+  display: none; /* Keep hidden by default */
+  position: relative; /* Crucial for marker positioning */
+}
+
+.map.active {
+  display: block; /* Show active map */
+}
+
+.map img {
+  width: 100%; /* Image fills the .map container */
+  max-width: 1000px; /* Still respect the max width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below image */
+  border: 5px solid #3D80C4;
+  box-sizing: border-box; /* Include border in width calculation */
+}
+
+/* --- Base Marker Style --- */
+.marker {
+  position: absolute;
+  background: rgba(0, 0, 255, 0.1); /* Transparent blue overlay - Adjust as needed */
+  border: 1px solid rgba(0, 0, 255, 0.3); /* Subtle border */
+  border-radius: 2px;
+  cursor: pointer;
+  box-sizing: border-box;
+  /* Base width/height removed, defined per marker */
+  transition: background-color 0.3s ease;
+}
+
+.marker:hover {
+   background: rgba(0, 0, 255, 0.3); /* Darker on hover */
+}
+
+/* Tooltip for Marker */
+.marker:hover::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 105%; /* Position above the marker */
+  left: 50%;
+  transform: translateX(-50%); /* Center the tooltip */
+  background: rgba(0, 0, 0, 0.75); /* Dark background */
+  color: white; /* Light text */
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1001; /* Above suggestions */
+  pointer-events: none; /* Prevent tooltip from interfering with hover */
+}
+
+/* Highlight Animation */
+@keyframes flashHighlight {
+  0% { background-color: rgba(50, 205, 50, 0.7); border-color: limegreen; } /* Start bright green */
+  50% { background-color: rgba(50, 205, 50, 0.3); border-color: rgba(50, 205, 50, 0.5); } /* Fade */
+  100% { background-color: rgba(0, 0, 255, 0.1); border-color: rgba(0, 0, 255, 0.3); } /* Return to base */
+}
+
+.marker.highlight {
+  /* Use a different highlight, maybe green? */
+  animation: flashHighlight 1.5s ease-out forwards;
+  z-index: 10; /* Ensure highlighted is visible */
+}
+
+
+/* --- SPECIFIC MARKER POSITIONS (Using Percentages) --- */
+/* Calculated based on assumed 1000px width and 600px height */
+/* Format: top: (pixel_top / 600 * 100)%; left: (pixel_left / 1000 * 100)%; etc. */
+
+/* Floor 1 Markers */
+#floor-1 .marker[data-name="EPM (Electrical Power and Machines Lab)"] {
+  top: 0.17%; /* 1px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 14.17%; /* 85px / 600 */
+}
+#floor-1 .marker[data-name="ECT (Electronic and Control Lab)"] {
+  top: 0.17%; /* 1px / 600 */
+  left: 24.5%; /* 245px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 14.17%; /* 85px / 600 */
+}
+#floor-1 .marker[data-name="Course Coordinators office"] {
+  top: 14.83%; /* 89px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 45.0%; /* 270px / 600 */
+}
+#floor-1 .marker[data-name="EDS (Engineering Drawing Studio)"] {
+  top: 82.17%; /* 493px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 44.3%; /* 443px / 1000 */
+  height: 11.67%; /* 70px / 600 */
+}
+
+/* Floor 2 Markers */
+#floor-2 .marker[data-name="RML (Robotics and Mechatronics Laboratory)"] {
+  top: 0%; /* 0px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 9.0%; /* 54px / 600 */
+}
+#floor-2 .marker[data-name="ACR (Air Conditioning and Refridgeratory Laboratory)"] {
+  top: 8.67%; /* 52px / 600 */
+  left: 15.5%; /* 155px / 1000 */
+  width: 8.4%; /* 84px / 1000 */
+  height: 8.67%; /* 52px / 600 */
+}
+#floor-2 .marker[data-name="LAB1"] {
+  top: 8.83%; /* 53px / 600 */
+  left: 30.7%; /* 307px / 1000 */
+  width: 14.2%; /* 142px / 1000 */
+  height: 8.17%; /* 49px / 600 */
+}
+#floor-2 .marker[data-name="TFL (Thermofluid Lab)"] {
+  top: 17.0%; /* 102px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 12.83%; /* 77px / 600 */
+}
+#floor-2 .marker[data-name="MML (Mechanics of Machines Lab)"] {
+  top: 39.17%; /* 235px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 8.0%; /* 48px / 600 */
+}
+#floor-2 .marker[data-name="Faculty Library"] {
+  top: 47.33%; /* 284px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 12.5%; /* 75px / 600 */
+}
+#floor-2 .marker[data-name="RM 2"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 10.7%; /* 107px / 1000 */
+  height: 11.5%; /* 69px / 600 */
+}
+#floor-2 .marker[data-name="RM 1"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 19.3%; /* 193px / 1000 */
+  width: 14.0%; /* 140px / 1000 */
+  height: 11.5%; /* 69px / 600 */
+}
+#floor-2 .marker[data-name="LAB2"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 42.5%; /* 425px / 1000 */
+  width: 15.4%; /* 154px / 1000 */
+  height: 11.5%; /* 69px / 600 */
+}
+#floor-2 .marker[data-name="Tuck Shop"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 86.7%; /* 867px / 1000 */
+  width: 12.9%; /* 129px / 1000 */
+  height: 11.5%; /* 69px / 600 */
+}
+
+/* Floor 3 Markers */
+#floor-3 .marker[data-name="PHY LAB (Physics and Applied Electricity Lab)"] {
+  top: 0.17%; /* 1px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 15.2%; /* 152px / 1000 */
+  height: 14.0%; /* 84px / 600 */
+}
+#floor-3 .marker[data-name="CHM LAB (Chemistry Lab)"] {
+  top: 0.17%; /* 1px / 600 */
+  left: 24.2%; /* 242px / 1000 */
+  width: 14.3%; /* 143px / 1000 */
+  height: 14.0%; /* 84px / 600 */
+}
+#floor-3 .marker[data-name="RM 5"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 0.1%; /* 1px / 1000 */
+  width: 10.7%; /* 107px / 1000 */
+  height: 11.33%; /* 68px / 600 */
+}
+#floor-3 .marker[data-name="RM 4"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 19.2%; /* 192px / 1000 */
+  width: 14.1%; /* 141px / 1000 */
+  height: 11.33%; /* 68px / 600 */
+}
+#floor-3 .marker[data-name="RM 3"] {
+  top: 82.5%; /* 495px / 600 */
+  left: 42.6%; /* 426px / 1000 */
+  width: 15.1%; /* 151px / 1000 */
+  height: 11.33%; /* 68px / 600 */
+}
+
+
+/* --- RESPONSIVE LAYOUT FOR MAP SECTION --- */
+@media screen and (max-width: 960px) { /* Same breakpoint as navbar */
+  .main-bg {
+      padding: 15px; /* Adjust padding */
+  }
+
+  #top-bar {
+      flex-direction: column; /* Stack search and buttons */
+      align-items: stretch; /* Make items take full width */
+      gap: 15px; /* Adjust gap */
+      margin-bottom: 15px;
+      padding: 0; /* Remove padding if stretching */
+  }
+
+  #search-wrapper {
+      max-width: none; /* Allow search to take full width */
+      width: 100%; /* Take full width */
+      margin-bottom: 0; /* Reset margin */
+  }
+
+  .floor-buttons {
+      justify-content: center; /* Center buttons */
+      width: 100%; /* Take full width */
+      margin-top: 0; /* Reset margin */
+      flex-wrap: wrap; /* Allow buttons to wrap if needed */
+  }
+
+  .floor-buttons button {
+      font-size: 14px; /* Smaller buttons on mobile */
+      padding: 6px 10px;
+  }
+
+  .map-container {
+      /* margin-left: 16.5rem; <-- Remove desktop margin */
+      margin-left: auto; /* Re-center */
+      margin-right: auto; /* Re-center */
+      margin-top: 15px; /* Add space above map */
+      max-width: 100%; /* Ensure map container doesn't overflow */
+      padding: 0;
+  }
+
+  .map img {
+      border-width: 3px; /* Thinner border on mobile */
+  }
+
+  /* Adjust marker tooltip for mobile if needed */
+  .marker:hover::after {
+      font-size: 11px;
+      padding: 3px 6px;
+  }
+}
+
+/* Optional: Specific adjustments for very small screens */
+@media screen and (max-width: 480px) {
+  .floor-buttons {
+      gap: 5px; /* Smaller gap */
+  }
+  .floor-buttons button {
+      font-size: 12px;
+      padding: 5px 8px;
+  }
+   #search {
+      font-size: 14px;
+  }
+}

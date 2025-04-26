@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codespark Submission</title>
+    <link rel="stylesheet" href="SST.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img src="images/TRANSPARENT_Logo_of_Pan-Atlantic_University.png" class="logo">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="Innov8tor_website.html" class="navbar__links">HOME</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="Campus_Guide.html" class="navbar__links">CAMPUS GUIDE</a>
+                </li>
+                <li class="navbar__item">
+                  <a href="#" class="navbar__links" id="timetablesDropdownBtn">ALL TIMETABLES ▾</a>
+                  <div class="navbar__dropdown" id="timetablesDropdown">
+                      <a href="/All_Timetables Students.html" class="navbar__dropdown-link">For Students</a>
+                      <a href="/All_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
+                  </div>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-bg">
+        <div id="top-bar">
+            <div id="search-wrapper">
+                <input type="text" id="search" placeholder="Search..." autocomplete="off">
+                <div id="suggestions" class="dropdown"></div>
+            </div>
+            <div class="floor-buttons">
+                <button onclick="switchFloor(1)">Ground</button>
+                <button onclick="switchFloor(2)">Floor 1</button>
+                <button onclick="switchFloor(3)">Floor 2</button>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div class="map active" id="floor-1">
+                <img src="/SST Floors/SST GROUND FLOOR FOYER.svg" alt="Floor 1">
+                <div class="marker" data-name="EPM (Electrical Power and Machines Lab)"></div>
+                <div class="marker" data-name="ECT (Electronic and Control Lab)"></div>
+                <div class="marker" data-name="Course Coordinators office"></div>
+                <div class="marker" data-name="EDS (Engineering Drawing Studio)"></div>
+            </div>
+            <div class="map" id="floor-2">
+                <img src="/SST Floors/SST FIRST FLOOR.svg" alt="Floor 2">
+                <div class="marker" data-name="RML (Robotics and Mechatronics Laboratory)"></div>
+                <div class="marker" data-name="ACR (Air Conditioning and Refridgeratory Laboratory)"></div>
+                <div class="marker" data-name="LAB1"></div>
+                <div class="marker" data-name="TFL (Thermofluid Lab)"></div>
+                <div class="marker" data-name="MML (Mechanics of Machines Lab)"></div>
+                <div class="marker" data-name="Faculty Library"></div>
+                <div class="marker" data-name="RM 2"></div>
+                <div class="marker" data-name="RM 1"></div>
+                <div class="marker" data-name="LAB2"></div>
+                <div class="marker" data-name="Tuck Shop"></div>
+            </div>
+            <div class="map" id="floor-3">
+                <img src="/SST Floors/SST SECOND FLOOR.svg" alt="Floor 3">
+                <div class="marker" data-name="PHY LAB (Physics and Applied Electricity Lab)"></div>
+                <div class="marker" data-name="CHM LAB (Chemistry Lab)"></div>
+                <div class="marker" data-name="RM 5"></div>
+                <div class="marker" data-name="RM 4"></div>
+                <div class="marker" data-name="RM 3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Innov8tor_website.js"></script> <script src="SST.js"></script>
+    <script>
+      // Navbar dropdown script (keep as is)
+      document.getElementById("timetablesDropdownBtn").addEventListener("click", function (e) {
+          e.preventDefault();
+          const dropdown = document.getElementById("timetablesDropdown");
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+      });
+
+      document.addEventListener("click", function (e) {
+          const btn = document.getElementById("timetablesDropdownBtn");
+          const menu = document.getElementById("timetablesDropdown");
+          // Check if the click is outside the button AND outside the dropdown menu
+          if (btn && menu && !btn.contains(e.target) && !menu.contains(e.target)) {
+              menu.style.display = "none";
+          }
+      });
+
+      // Mobile menu toggle (Add this if Innov8tor_website.js doesn't handle it)
+      const menu = document.querySelector('#mobile-menu');
+      const menuLinks = document.querySelector('.navbar__menu');
+
+      if (menu && menuLinks) {
+        menu.addEventListener('click', function() {
+          menu.classList.toggle('is-active');
+          menuLinks.classList.toggle('active');
+        });
+      }
+
+    </script>
+</body>
+</html>
