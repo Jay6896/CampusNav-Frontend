@@ -10,7 +10,7 @@
 <body>
     <nav class="navbar">
         <div class="navbar__container">
-            <img src="images/TRANSPARENT_Logo_of_Pan-Atlantic_University.png" class="logo">
+            <img src="images/TRANSPARENT_Logo_of_Pan-Atlantic_University.png" alt="PAU Logo" class="logo">
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -21,13 +21,13 @@
                     <a href="Innov8tor_website.html" class="navbar__links">HOME</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="Campus_Guide.html" class="navbar__links">CAMPUS GUIDE</a>
+                     <a href="Campus_Guide.html" class="navbar__links">CAMPUS GUIDE</a>
                 </li>
                 <li class="navbar__item">
                   <a href="#" class="navbar__links" id="timetablesDropdownBtn">ALL TIMETABLES ▾</a>
                   <div class="navbar__dropdown" id="timetablesDropdown">
                       <a href="/All_Timetables Students.html" class="navbar__dropdown-link">For Students</a>
-                      <a href="/All_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
+                       <a href="/All_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
                   </div>
               </li>
             </ul>
@@ -37,7 +37,7 @@
     <div class="main-bg">
         <div id="top-bar">
             <div id="search-wrapper">
-                <input type="text" id="search" placeholder="Search..." autocomplete="off">
+                <input type="text" id="search" placeholder="Search Locations..." autocomplete="off">
                 <div id="suggestions" class="dropdown"></div>
             </div>
             <div class="floor-buttons">
@@ -49,14 +49,14 @@
 
         <div class="map-container">
             <div class="map active" id="floor-1">
-                <img src="SST Floors/SST GROUND FLOOR FOYER-01.svg" alt="Floor 1">
+                 <img src="/Website/SST Floors/SST GROUND FLOOR FOYER.svg" alt="SST Ground Floor Map">
                 <div class="marker" data-name="EPM (Electrical Power and Machines Lab)"></div>
                 <div class="marker" data-name="ECT (Electronic and Control Lab)"></div>
                 <div class="marker" data-name="Course Coordinators office"></div>
                 <div class="marker" data-name="EDS (Engineering Drawing Studio)"></div>
             </div>
             <div class="map" id="floor-2">
-                <img src="/SST Floors/SST FIRST FLOOR.svg" alt="Floor 2">
+                <img src="/Website/SST Floors/SST FIRST FLOOR.svg" alt="SST First Floor Map">
                 <div class="marker" data-name="RML (Robotics and Mechatronics Laboratory)"></div>
                 <div class="marker" data-name="ACR (Air Conditioning and Refridgeratory Laboratory)"></div>
                 <div class="marker" data-name="LAB1"></div>
@@ -69,7 +69,7 @@
                 <div class="marker" data-name="Tuck Shop"></div>
             </div>
             <div class="map" id="floor-3">
-                <img src="/SST Floors/SST SECOND FLOOR.svg" alt="Floor 3">
+                <img src="/SST Floors/SST SECOND FLOOR.svg" alt="SST Second Floor Map">
                 <div class="marker" data-name="PHY LAB (Physics and Applied Electricity Lab)"></div>
                 <div class="marker" data-name="CHM LAB (Chemistry Lab)"></div>
                 <div class="marker" data-name="RM 5"></div>
@@ -79,25 +79,28 @@
         </div>
     </div>
 
-    <script src="Innov8tor_website.js"></script> <script src="SST.js"></script>
+    <script src="SST.js"></script>
     <script>
-      // Navbar dropdown script (keep as is)
-      document.getElementById("timetablesDropdownBtn").addEventListener("click", function (e) {
-          e.preventDefault();
-          const dropdown = document.getElementById("timetablesDropdown");
-          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-      });
+      // Navbar dropdown script
+      const timetablesBtn = document.getElementById("timetablesDropdownBtn");
+      const timetablesDropdown = document.getElementById("timetablesDropdown");
 
-      document.addEventListener("click", function (e) {
-          const btn = document.getElementById("timetablesDropdownBtn");
-          const menu = document.getElementById("timetablesDropdown");
-          // Check if the click is outside the button AND outside the dropdown menu
-          if (btn && menu && !btn.contains(e.target) && !menu.contains(e.target)) {
-              menu.style.display = "none";
-          }
-      });
+      if (timetablesBtn && timetablesDropdown) {
+        timetablesBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            timetablesDropdown.style.display = timetablesDropdown.style.display === "block" ? "none" : "block";
+        });
 
-      // Mobile menu toggle (Add this if Innov8tor_website.js doesn't handle it)
+        // Close dropdown if clicking outside
+        document.addEventListener("click", function (e) {
+            if (!timetablesBtn.contains(e.target) && !timetablesDropdown.contains(e.target)) {
+                timetablesDropdown.style.display = "none";
+            }
+        });
+      }
+
+
+      // Mobile menu toggle script
       const menu = document.querySelector('#mobile-menu');
       const menuLinks = document.querySelector('.navbar__menu');
 
@@ -105,9 +108,21 @@
         menu.addEventListener('click', function() {
           menu.classList.toggle('is-active');
           menuLinks.classList.toggle('active');
+          // Close timetable dropdown when mobile menu is toggled
+           if (timetablesDropdown) {
+               timetablesDropdown.style.display = "none";
+           }
         });
       }
 
     </script>
+
+    <div id="custom-tooltip">
+        <img src="" alt="" class="tooltip-image">
+        <p class="tooltip-class"></p>
+        <p class="tooltip-time"></p>
+        <p class="tooltip-location"></p>
+    </div>
+
 </body>
 </html>
