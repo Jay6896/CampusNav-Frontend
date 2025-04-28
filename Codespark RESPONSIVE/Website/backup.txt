@@ -307,3 +307,6 @@ public class SecurityConfig {
         return NoOpPasswordEncoder.getInstance(); // Plain text for demo
     }
 }
+
+
+/SST Floors/SST FIRST FLOOR.svg

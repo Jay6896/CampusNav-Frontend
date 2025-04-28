@@ -7,21 +7,21 @@ const locations = [
   { name: "EDS (Engineering Drawing Studio)", floor: 1, imageSrc: "images/locations/placeholder.jpg", currentClass: "EDS 100", classTime: "1:00pm - 4:00pm" },
   // Floor 2
   { name: "RML (Robotics and Mechatronics Laboratory)", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "Robotics Intro", classTime: "10:00am - 12:00pm" },
-  { name: "ACR (Air Conditioning and Refridgeratory Laboratory)", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: null, classTime: null },
-  { name: "LAB1", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "CS 310", classTime: "2:00pm - 4:00pm" },
-  { name: "TFL (Thermofluid Lab)", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "Thermo 212", classTime: "9:00am - 11:00am" },
-  { name: "MML (Mechanics of Machines Lab)", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "Mech 301", classTime: "1:00pm - 3:00pm" },
-  { name: "Faculty Library", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "Quiet Study", classTime: "All Day" },
+  { name: "ACR (Air Conditioning and Refridgeratory Laboratory)", floor: 2, imageSrc: "SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173814.jpg", currentClass: null, classTime: null },
+  { name: "LAB1", floor: 2, imageSrc: "SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173754.jpg", currentClass: "CS 310", classTime: "2:00pm - 4:00pm" },
+  { name: "TFL (Thermofluid Lab)", floor: 2, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173821.jpg", currentClass: "Thermo 212", classTime: "9:00am - 11:00am" },
+  { name: "MML (Mechanics of Machines Lab)", floor: 2, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173833.jpg", currentClass: "Mech 301", classTime: "1:00pm - 3:00pm" },
+  { name: "Faculty Library", floor: 2, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173848.jpg", currentClass: "Quiet Study", classTime: "All Day" },
   { name: "RM 2", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "MATH 101", classTime: "8:00am - 10:00am" },
-  { name: "RM 1", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: null, classTime: null },
-  { name: "LAB2", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "Physics 202 Lab", classTime: "11:00am - 1:00pm" },
+  { name: "RM 1", floor: 2, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173902.jpg", currentClass: null, classTime: null },
+  { name: "LAB2", floor: 2, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173925.jpg", currentClass: "Physics 202 Lab", classTime: "11:00am - 1:00pm" },
   { name: "Tuck Shop", floor: 2, imageSrc: "images/locations/placeholder.jpg", currentClass: "Snacks & Drinks", classTime: "9:00am - 5:00pm" },
   // Floor 3
-  { name: "PHY LAB (Physics and Applied Electricity Lab)", floor: 3, imageSrc: "images/locations/placeholder.jpg", currentClass: "Physics 101 Lab", classTime: "10:00am - 1:00pm" },
+  { name: "PHY LAB (Physics and Applied Electricity Lab)", floor: 3, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_174124.jpg", currentClass: "Physics 101 Lab", classTime: "10:00am - 1:00pm" },
   { name: "CHM LAB (Chemistry Lab)", floor: 3, imageSrc: "images/locations/placeholder.jpg", currentClass: "Chem 110 Lab", classTime: "2:00pm - 5:00pm" },
   { name: "RM 5", floor: 3, imageSrc: "images/locations/placeholder.jpg", currentClass: "History 250", classTime: "1:00pm - 3:00pm" },
-  { name: "RM 4", floor: 3, imageSrc: "images/locations/placeholder.jpg", currentClass: null, classTime: null },
-  { name: "RM 3", floor: 3, imageSrc: "images/locations/placeholder.jpg", currentClass: "ENG 400 Seminar", classTime: "3:00pm - 5:00pm" },
+  { name: "RM 4", floor: 3, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_174016.jpg", currentClass: null, classTime: null },
+  { name: "RM 3", floor: 3, imageSrc: "/SST CLASSROOM IMAGES/SAMSUNG S10/20250428_174031.jpg", currentClass: "ENG 400 Seminar", classTime: "3:00pm - 5:00pm" },
 ];
 
 // --- Floor Switching ---
