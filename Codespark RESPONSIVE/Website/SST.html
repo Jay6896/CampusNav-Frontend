@@ -79,6 +79,19 @@
         </div>
     </div>
 
+    <div id="custom-tooltip">
+        <img src="" alt="" class="tooltip-image" style="cursor: pointer;">
+        <p class="tooltip-class"></p>
+        <p class="tooltip-time"></p>
+        <p class="tooltip-location"></p>
+    </div>
+
+    <div id="image-lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption"></div> </div>
+
+
     <script src="SST.js"></script>
     <script>
       // Navbar dropdown script
@@ -88,41 +101,48 @@
       if (timetablesBtn && timetablesDropdown) {
         timetablesBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            timetablesDropdown.style.display = timetablesDropdown.style.display === "block" ? "none" : "block";
+            // Toggle display
+            const isVisible = timetablesDropdown.style.display === "block";
+            timetablesDropdown.style.display = isVisible ? "none" : "block";
+            // Prevent click from propagating to document listener below
+            e.stopPropagation();
         });
+      }
 
-        // Close dropdown if clicking outside
+        // Mobile menu toggle script (assuming it exists and works)
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.navbar__menu');
+
+        if (menu && menuLinks) {
+            menu.addEventListener('click', function(e) {
+                menu.classList.toggle('is-active');
+                menuLinks.classList.toggle('active');
+                // Close timetable dropdown when mobile menu is toggled
+                if (timetablesDropdown) {
+                    timetablesDropdown.style.display = "none";
+                }
+                // Prevent click from propagating
+                e.stopPropagation();
+            });
+        }
+
+       // --- Global Click Listener (for closing dropdowns/tooltips) ---
         document.addEventListener("click", function (e) {
-            if (!timetablesBtn.contains(e.target) && !timetablesDropdown.contains(e.target)) {
+            // Close timetable dropdown if click is outside
+            if (timetablesBtn && timetablesDropdown && !timetablesBtn.contains(e.target) && !timetablesDropdown.contains(e.target)) {
                 timetablesDropdown.style.display = "none";
             }
-        });
-      }
 
-
-      // Mobile menu toggle script
-      const menu = document.querySelector('#mobile-menu');
-      const menuLinks = document.querySelector('.navbar__menu');
-
-      if (menu && menuLinks) {
-        menu.addEventListener('click', function() {
-          menu.classList.toggle('is-active');
-          menuLinks.classList.toggle('active');
-          // Close timetable dropdown when mobile menu is toggled
-           if (timetablesDropdown) {
-               timetablesDropdown.style.display = "none";
+           // Close tooltip - Handled within SST.js now
+           // Close mobile nav if click is outside nav area when open
+           if (menuLinks && menuLinks.classList.contains('active') && !menuLinks.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('is-active');
+                menuLinks.classList.remove('active');
            }
         });
-      }
+
 
     </script>
-
-    <div id="custom-tooltip">
-        <img src="" alt="" class="tooltip-image">
-        <p class="tooltip-class"></p>
-        <p class="tooltip-time"></p>
-        <p class="tooltip-location"></p>
-    </div>
 
 </body>
 </html>

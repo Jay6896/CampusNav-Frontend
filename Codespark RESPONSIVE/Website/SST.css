@@ -39,7 +39,7 @@ html, body {
 }
 
 .logo {
-  height: 60px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 }
@@ -214,7 +214,7 @@ html, body {
   flex-wrap: wrap; /* Allow wrapping even on slightly larger screens */
   padding: 0 10px; /* Add slight padding inside */
   width: 100%;
-  /* === CHANGED: Match map-container max-width === */
+  /* Match map-container max-width */
   max-width: 1000px;
   margin-left: auto; /* Center the bar */
   margin-right: auto; /* Center the bar */
@@ -223,7 +223,6 @@ html, body {
 #search-wrapper {
   position: relative;
   flex-grow: 1; /* Allow search to take available space */
-  /* === REMOVED max-width: 400px; === */
   min-width: 250px; /* Prevent becoming too small */
   margin-bottom: 0;
 }
@@ -304,7 +303,6 @@ html, body {
   max-width: 1000px; /* Container max width */
   box-sizing: border-box;
   margin: 20px auto 0 auto; /* Center map container */
-  /* overflow: hidden; <-- Removed */
   position: relative; /* Needed for marker child positioning */
 }
 
@@ -376,17 +374,17 @@ html, body {
 
 /* Custom HTML Tooltip Styles */
 #custom-tooltip {
-  position: absolute; /* Positioned by JS */
+  position: absolute; /* Positioned by JavaScript */
   display: none; /* Hidden initially */
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   padding: 10px;
   border-radius: 5px;
-  z-index: 1001; /* Above markers */
+  z-index: 1001; /* Above markers, potentially below lightbox */
   max-width: 200px;
   text-align: center;
-  pointer-events: none; /* Doesn't interfere with mouse */
+  /* Pointer events enabled to allow clicking image */
 }
 
 #custom-tooltip .tooltip-image {
@@ -396,6 +394,7 @@ html, body {
   display: block;
   margin: 0 auto 8px auto;
   object-fit: cover;
+  cursor: pointer; /* Indicate image is clickable */
 }
 
 #custom-tooltip p {
@@ -422,6 +421,72 @@ html, body {
   font-style: italic;
 }
 
+/* Image Lightbox Styles */
+.lightbox {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1050; /* Sit on top of everything */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 85%;
+  max-height: 80vh; /* Limit height */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Optional Caption */
+#lightbox-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 50px; /* Adjust as needed */
+}
+
+/* Close Button */
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add Animation (Optional) */
+.lightbox-content, #lightbox-caption {
+  animation-name: zoom;
+  animation-duration: 0.4s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0.8)}
+  to {transform:scale(1)}
+}
+
 /* Responsive Layout Adjustments */
 @media screen and (max-width: 960px) {
   .main-bg {
@@ -434,7 +499,6 @@ html, body {
       gap: 15px;
       margin-bottom: 15px;
       padding: 0;
-      /* Max-width from desktop rule won't matter here due to full width */
       max-width: none; /* Explicitly remove max-width for mobile */
   }
 
@@ -498,5 +562,13 @@ html, body {
    #custom-tooltip .tooltip-time,
    #custom-tooltip .tooltip-location {
       font-size: 11px;
+  }
+  .lightbox-content {
+      max-width: 95%; /* Allow slightly larger image on small screens */
+  }
+  .lightbox-close {
+       font-size: 30px;
+       top: 10px;
+       right: 20px;
   }
 }
