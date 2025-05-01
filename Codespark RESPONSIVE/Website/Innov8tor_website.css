@@ -394,4 +394,29 @@
         font-size: 1.5rem;
       }
     }
+
+/* Optional: Specific adjustments for very small screens (if needed) */
+@media screen and (max-width: 480px) {
+  .navbar__container {
+      padding: 0 15px;
+  }
+   .navbar__toggle {
+      right: 15px;
+  }
+   .navbar__menu.active {
+       font-size: 1.2rem;
+  }
+   .navbar__links,
+   .navbar__dropdown-link {
+       padding: 0.8rem 1rem;
+  }
+
+   .main__content h1 {
+      font-size: 2rem; /* Smaller title on very small screens */
+  }
+
+  .main__card {
+      width: 95%;
+  }
+}
     
