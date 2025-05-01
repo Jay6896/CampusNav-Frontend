@@ -1,98 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Nav</title>
-    <link rel="stylesheet" href="Innov8tor_website.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Nav</title>
+  <link rel="stylesheet" href="Innov8tor_website.css" />
 </head>
 <body>
     <!--Navbar Section-->
     <nav class="navbar">
-        <div class="navbar__container">
-            <img src="images/TRANSPARENT_Logo_of_Pan-Atlantic_University.png" class="logo">
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="index.html" class="navbar__links">HOME</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="Campus_Guide.html" class="navbar__links">CAMPUS GUIDE</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="#" class="navbar__links" id="timetablesDropdownBtn">ALL TIMETABLES ▾</a>
-                    <div class="navbar__dropdown" id="timetablesDropdown">
-                        <a href="/All_Timetables Students.html" class="navbar__dropdown-link">For Students</a>
-                        <a href="/All_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
-                    </div>
-                </li>       
-            </ul>
-        </div>
-    </nav>
+      <div class="navbar__container">
+          <img src="images/TRANSPARENT_Logo_of_Pan-Atlantic_University.png" class="logo">
+          <div class="navbar__toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+          </div>
+          <ul class="navbar__menu">
+              <li class="navbar__item">
+                  <a href="index.html" class="navbar__links">HOME</a>
+              </li>
+              <li class="navbar__item">
+                  <a href="Campus_Guide.html" class="navbar__links">CAMPUS GUIDE</a>
+              </li>
+              <li class="navbar__item">
+                  <a href="#" class="navbar__links" id="timetablesDropdownBtn">ALL TIMETABLES ▾</a>
+                  <div class="navbar__dropdown" id="timetablesDropdown">
+                      <a href="All_Timetables Students.html" class="navbar__dropdown-link">For Students</a>
+                      <a href="Staff_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
+                  </div>
+              </li>       
+          </ul>
+      </div>
+  </nav>
 
-    <!--Hero Section-->
-    <div class="main">
-        <div class="main__container">
-            <div class="main__content">
-                <h1>Effortless Campus Navigation</h1> 
-                <h1 style="background-color: #8ab9f3">& Timetable Scheduling</h1>  
-            </div>
-            <div class="main__img--container">
-                <img class="first_image" src="images/Navigation_1.svg" alt="firstline" id="main__img">
-            </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1>Welcome to CampusNav</h1>
+      <p class="hero-subtext">Effortless navigation and smart timetable management</p>
+      <div class="hero-buttons">
+        <a href="Campus_Guide.html" class="cta-button">Navigate Campus</a>
+        <a href="All_Timetables Students.html" class="cta-button secondary">View Timetable</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Services Section-->
-     <div class="services">
-        <h1>Instantly locate classrooms,<br>cafeterias, and facilities</h1>
-        <div class="services__container">
-            <img class="second_image" src="images/Navigation_2.svg" alt="secondline" id="main__img">
-        </div>
-     </div>
-     
-     <!-- Third Section-->
-     <div class="third">
-        <div class="third__container">
-            <div class="third__content">
-                <h1>Search for any class</h1> 
-                <h1>and see its current schedule</h1>  
-            </div>
-            <div class="third__img--container">
-                <img class="third_image" src="/images/Schedule_1.svg" alt="thirdline" id="main__img">
-            </div>
-        </div>
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-card">
+      <img src="images/Navigation_1.svg" alt="Locate" />
+      <h3>Find Classrooms & Facilities</h3>
+      <p>Instantly locate key places on campus with interactive maps.</p>
     </div>
+    <div class="feature-card">
+      <img src="images/Schedule_1.svg" alt="Schedule" />
+      <h3>Check Timetables</h3>
+      <p>View updated class schedules anytime.</p>
+    </div>
+    <div class="feature-card">
+      <img src="images/Schedule_2.svg" alt="Manage" />
+      <h3>Manage Classes</h3>
+      <p>Course coordinators can reschedule and manage sessions with ease.</p>
+    </div>
+  </section>
 
-    <!-- Fourth Section -->
-     <div class="services4">
-        <h1>Course coordinators can manage and reschedule classes</h1>
-        <div class="services__container4">
-            <img class="second_image4" src="images/Schedule_2.svg" alt="secondline" id="main__img">
-        </div>
-     </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__left">
+      <img src="images/TRANSPARENT_Logo_of_Pan-Atlantic_University.png" alt="PAU Logo">
+      <h1>CampusNav</h1>
+    </div>
+    <div class="footer__right">
+      <a href="index.html">Home</a>
+      <a href="Campus_Guide.html">Campus Navigation</a>
+      <a href="/All_Timetables Students.html">Timetables for Students</a>
+      <a href="/All_Timetables.html">Timetables for Coordinators</a>
+    </div>
+  </footer>
 
+  <script src="Innov8tor_website.js"></script>
+  <script>
+    document.getElementById("timetablesDropdownBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+        const dropdown = document.getElementById("timetablesDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
 
-    <script src="Innov8tor_website.js"></script>
-    <script>
-        document.getElementById("timetablesDropdownBtn").addEventListener("click", function (e) {
-            e.preventDefault();
-            const dropdown = document.getElementById("timetablesDropdown");
-            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-        });
-    
-        document.addEventListener("click", function (e) {
-            const btn = document.getElementById("timetablesDropdownBtn");
-            const menu = document.getElementById("timetablesDropdown");
-            if (!btn.contains(e.target) && !menu.contains(e.target)) {
-                menu.style.display = "none";
-            }
-        });
-    </script>
+    document.addEventListener("click", function (e) {
+        const btn = document.getElementById("timetablesDropdownBtn");
+        const menu = document.getElementById("timetablesDropdown");
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html>

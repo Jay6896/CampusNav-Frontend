@@ -27,8 +27,8 @@
                 <li class="navbar__item">
                   <a href="#" class="navbar__links" id="timetablesDropdownBtn">ALL TIMETABLES ▾</a>
                   <div class="navbar__dropdown" id="timetablesDropdown">
-                      <a href="/All_Timetables Students.html" class="navbar__dropdown-link">For Students</a>
-                      <a href="/All_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
+                      <a href="All_Timetables Students.html" class="navbar__dropdown-link">For Students</a>
+                      <a href="Staff_Timetables.html" class="navbar__dropdown-link">For Coordinators</a>
                   </div>
               </li> 
             </ul>
@@ -50,21 +50,21 @@
             
               <div class="map-container">
                 <div class="map active" id="floor-1">
-                  <img src="/TYD Floors/TYD.svg" alt="Floor 1">
-                  <div class="marker" data-name="ADO EKITI" style="top: 446px; left: 1px; width: 75px; height: 82px;"></div>
-                  <div class="marker" data-name="MAIDUGURI" style="top: 455px; left: 78px; width: 32px; height: 73px;"></div>
-                  <div class="marker" data-name="AUDIO-VISUAL STUDIO" style="top: 447px; left: 235px; width: 65px; height: 80px;"></div>
-                  <div class="marker" data-name="CHAPEL" style="top: 447px; left: 326px; width: 75px; height: 80px;"></div>
-                  <div class="marker" data-name="JALINGO" style="top: 487px; left: 822px; width: 105px; height: 75px;"></div>
-                  <div class="marker" data-name="EKO FOYER" style="top: 200px; left: 1px; width: 110px; height: 225px;"></div>
-                  <div class="marker" data-name="JOS" style="top: 375px; left: 870px; width: 126px; height: 79px;"></div>
-                  <div class="marker" data-name="ENUGU" style="top: 209px; left: 870px; width: 126px; height: 122px;"></div>
-                  <div class="marker" data-name="ABUJA HALL" style="top: 1px; left: 751px; width: 245px; height: 112px;"></div>
-                  <div class="marker" data-name="ZARIA" style="top: 1px; left: 590px; width: 80px; height: 112px;"></div>
-                  <div class="marker" data-name="SAPETRO BLOCK" style="top: 1px; left: 425px; width: 134px; height: 240px;"></div>
-                  <div class="marker" data-name="MOSQUE" style="top: 1px; left: 175px; width: 42px; height: 177px;"></div>
-                  <div class="marker" data-name="CAFETERIA" style="top: 1px; left: 295px; width: 104px; height: 177px;"></div>
-                  <div class="marker" data-name="ADMISSIONS OFFICE" style="top: 1px; left: 1px; width: 146px; height: 72px;"></div>
+                  <img src="/Website/TYD Floors/TYD.svg" alt="Floor 1">
+                  <div class="marker" data-name="CHAPEL"></div>
+                  <div class="marker" data-name="AUDIO-VISUAL STUDIO"></div>
+                  <div class="marker" data-name="MAIDUGURI"></div>
+                  <div class="marker" data-name="ADO EKITI"></div>
+                  <div class="marker" data-name="EKO FOYER"></div>
+                  <div class="marker" data-name="STUDENT AFFAIRS & ALUMNI OFFICE"></div>
+                  <div class="marker" data-name="MOSQUE"></div>
+                  <div class="marker" data-name="CAFETERIA"></div>
+                  <div class="marker" data-name="SAPETRO BLOCK"></div>
+                  <div class="marker" data-name="ZARIA"></div>
+                  <div class="marker" data-name="ABUJA HALL"></div>
+                  <div class="marker" data-name="ENUGU"></div>
+                  <div class="marker" data-name="JOS"></div>
+                  <div class="marker" data-name="JALINGO"></div>
                 </div>
                <!-- <div class="map" id="floor-2">
                   <img src="/SST Floors/SST FIRST FLOOR.svg" alt="Floor 2">
@@ -89,6 +89,19 @@
                 </div>-->
               </div>            
     </div>
+    
+    <div id="custom-tooltip">
+      <img src="" alt="" class="tooltip-image" style="cursor: pointer;">
+      <p class="tooltip-class"></p>
+      <p class="tooltip-time"></p>
+      <p class="tooltip-location"></p>
+  </div>
+
+  <div id="image-lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img">
+      <div id="lightbox-caption"></div> </div>
+
     <script src="Innov8tor_website.js"></script>
     <script src="TYD.js"></script>
     <script>
