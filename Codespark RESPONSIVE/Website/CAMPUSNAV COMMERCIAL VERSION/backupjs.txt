@@ -1,0 +1,220 @@
+// --- Elements (Keep as is)---
+const searchInput = document.getElementById('search');
+const suggestionsBox = document.getElementById('suggestions');
+const mapContainer = document.getElementById('mapContainer');
+const infoContainer = document.getElementById('infoContainer');
+const lightboxElement = document.getElementById('image-lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+// --- Static Map Configuration (Keep as is) ---
+const STATIC_MAP_COORDINATES = "6.4881303799650425, 3.853638499696271";
+const STATIC_MAP_ZOOM = 17;
+const mapUrl = `https://maps.google.com/maps?q=${STATIC_MAP_COORDINATES}&hl=en&z=${STATIC_MAP_ZOOM}&output=embed`;
+
+// --- Classroom Data (Keep as is) ---
+const classrooms = [
+  // Non Science Related Courses
+  { name: "ACCOUNTING 101", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Lecture_Hall.jpg/640px-Lecture_Hall.jpg", time: "10:00am - 1:00pm", location_type: "LECTURE HALL", location_note: "• Is on the second floor<br>• Beside a sitting area with red and black chairs" },
+  { name: "ECONOMICS 203", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Classroom.jpg/640px-Classroom.jpg", time: "2:00pm - 4:00pm", location_type: "CLASSROOM", location_note: "• Near the large window<br>• Left of the vending machine" },
+  // Science Related Courses
+  { name: "EPM 101 (Electrical Power)", image: "hall.jpg", time: "9:00am - 11:00am", location_type: "LAB", location_note: "• Located in SST Building, Ground Floor<br>• Main Electrical Lab" },
+  { name: "MATH 101", image: "SST CLASSROOM IMAGES/SAMSUNG S10/20250430_161221.jpg", time: "8:00am - 10:00am", location_type: "CLASSROOM", location_note: "• Located in SST Building, Floor 1<br>• Designated as RM 2" },
+  { name: "CS 310", image: "SST CLASSROOM IMAGES/SAMSUNG S10/20250428_173754.jpg", time: "2:00pm - 4:00pm", location_type: "COMPUTER LAB", location_note: "• Located in SST Building, Floor 1<br>• Designated as SST LAB 1" },
+  { name: "PHYSICS 101 Lab", image: "SST CLASSROOM IMAGES/SAMSUNG S10/20250428_174124.jpg", time: "10:00am - 1:00pm", location_type: "PHYSICS LAB", location_note: "• Located in SST Building, Floor 2<br>• Designated as PHY LAB" }
+];
+
+// --- UI Update Function ---
+function updateUI(classroom) {
+  // 1. Update Map (Static) - Only load iframe once
+  if (!mapContainer.querySelector('iframe')) {
+      mapContainer.innerHTML = `<iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="${mapUrl}"></iframe>`;
+  }
+
+  // 2. Update Info Panel
+  if (!classroom) {
+    // Clear specific content areas if default message is shown
+    infoContainer.innerHTML = `
+        <div class="info-text-content" style="text-align: center; padding-top: 20px;">
+            <h2>Welcome!</h2>
+            <p>Search for a class subject above (e.g., MATH 101) to see its details here.</p>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #555;">The map shows the general campus location.</p>
+        </div>`;
+    // Make sure image isn't displayed in default view if using flex
+     const defaultImage = infoContainer.querySelector('img');
+     if (defaultImage) defaultImage.style.display = 'none';
+    return;
+  }
+
+  // Populate info container with image and text wrapped in its own div
+  infoContainer.innerHTML = `
+    <img src="${classroom.image || 'images/placeholder.jpg'}" alt="Image of ${classroom.name}" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+    <div class="info-text-content">
+        <h2>${classroom.name}</h2>
+        ${classroom.time ? `<p class="time-details">(${classroom.time})</p>` : ''}
+        ${classroom.location_type ? `<p class="location-type">${classroom.location_type}</p>` : ''}
+        ${classroom.location_note ? `<p class="location-notes">${classroom.location_note}</p>` : ''}
+    </div>
+  `;
+}
+
+// --- Search Suggestion Logic (Keep as is) ---
+let currentFocus = -1;
+let currentSuggestions = [];
+if (searchInput && suggestionsBox) { /* ... Same search code as previous version ... */
+    searchInput.addEventListener("input", () => {
+        const value = searchInput.value.trim().toLowerCase();
+        suggestionsBox.innerHTML = "";
+        currentSuggestions = [];
+        if (!value) {
+            suggestionsBox.style.display = "none";
+            return;
+        }
+        const matches = classrooms
+            .filter(c => c.name.toLowerCase().includes(value))
+            .sort((a, b) => a.name.toLowerCase().indexOf(value) - b.name.toLowerCase().indexOf(value));
+        matches.forEach((classroom) => {
+            const div = document.createElement("div");
+            const index = classroom.name.toLowerCase().indexOf(value);
+            const highlightedName = classroom.name.substring(0, index) + `<strong>${classroom.name.substring(index, index + value.length)}</strong>` + classroom.name.substring(index + value.length);
+            div.innerHTML = highlightedName;
+            div.onclick = (e) => {
+                e.stopPropagation();
+                selectSuggestion(classroom);
+            };
+            suggestionsBox.appendChild(div);
+            currentSuggestions.push(div);
+        });
+        currentFocus = -1;
+        suggestionsBox.style.display = matches.length ? "flex" : "none";
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+        if (!currentSuggestions.length && e.key !== 'Escape' && e.key !== 'Enter') return;
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            currentFocus = (currentFocus + 1) % currentSuggestions.length;
+            updateActiveSuggestion();
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            currentFocus = (currentFocus - 1 + currentSuggestions.length) % currentSuggestions.length;
+            updateActiveSuggestion();
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (currentFocus > -1) {
+                currentSuggestions[currentFocus].click();
+            } else {
+                const value = searchInput.value.trim().toLowerCase();
+                const exactMatch = classrooms.find(c => c.name.toLowerCase() === value);
+                if (exactMatch) { selectSuggestion(exactMatch); }
+            }
+            suggestionsBox.style.display = "none";
+        } else if (e.key === "Escape") {
+            suggestionsBox.style.display = "none";
+        }
+    });
+}
+
+function updateActiveSuggestion() { /* ... Same code as previous version ... */
+    currentSuggestions.forEach((div, index) => {
+        div.classList.toggle("active", index === currentFocus);
+        if (index === currentFocus) {
+            div.scrollIntoView({ block: "nearest", inline: "nearest" });
+        }
+    });
+}
+
+function selectSuggestion(classroom) { /* ... Same code as previous version ... */
+    searchInput.value = classroom.name;
+    suggestionsBox.innerHTML = "";
+    suggestionsBox.style.display = "none";
+    currentSuggestions = [];
+    currentFocus = -1;
+    updateUI(classroom);
+}
+
+// --- Lightbox Functionality (Keep as is) ---
+function openLightbox(imgElement) { /* ... Same code as previous version ... */
+    if (!lightboxElement || !lightboxImg || !lightboxCaption) return;
+    lightboxImg.src = imgElement.src;
+    lightboxCaption.textContent = imgElement.alt;
+    lightboxElement.style.display = 'block';
+}
+function closeLightbox() { /* ... Same code as previous version ... */
+    if (!lightboxElement) return;
+    lightboxElement.style.display = 'none';
+    lightboxImg.src = '';
+    lightboxCaption.textContent = '';
+}
+if (infoContainer) { /* ... Same code as previous version ... */
+    infoContainer.addEventListener('click', (event) => {
+        if (event.target.tagName === 'IMG' && event.target.closest('.class-info')) {
+            openLightbox(event.target);
+        }
+    });
+}
+if (lightboxClose) { /* ... Same code as previous version ... */
+    lightboxClose.addEventListener('click', closeLightbox);
+}
+if (lightboxElement) { /* ... Same code as previous version ... */
+    lightboxElement.addEventListener('click', (event) => {
+        if (event.target === lightboxElement) {
+            closeLightbox();
+        }
+    });
+}
+document.addEventListener('keydown', (event) => { /* ... Same code as previous version ... */
+    if (event.key === 'Escape' && lightboxElement && lightboxElement.style.display === 'block') {
+        closeLightbox();
+    }
+});
+
+
+// --- Initial Load (Keep as is) ---
+document.addEventListener('DOMContentLoaded', () => {
+    updateUI(null);
+});
+
+// --- UI Update Function ---
+function updateUI(classroom) {
+  // 1. Update Map (Static) - Only load iframe once
+  if (!mapContainer.querySelector('iframe')) {
+      mapContainer.innerHTML = `<iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="${mapUrl}"></iframe>`;
+  }
+
+  // 2. Update Info Panel
+  if (!classroom) {
+      // Add the placeholder class
+      infoContainer.classList.add('is-placeholder');
+      // Remove potential dynamic content styling if needed
+      infoContainer.classList.remove('has-content'); // Optional: Good practice if you style content differently
+
+      // Set the placeholder HTML (removed inline styles, added class to last p)
+      infoContainer.innerHTML = `
+      <div class="info-text-content placeholder-content">
+          <h2>Welcome!</h2>
+          <p>Search for a class subject above (e.g., MATH 101) to see its details here.</p>
+          <p class="placeholder-map-note">The map shows the general campus location.</p>
+      </div>`;
+      // Ensure any stray images are hidden (redundant if innerHTML is replaced, but safe)
+       const defaultImage = infoContainer.querySelector('img');
+       if (defaultImage) defaultImage.style.display = 'none';
+      return; // Stop execution here for placeholder
+  }
+
+  // If we have a classroom, remove placeholder class and add content class
+  infoContainer.classList.remove('is-placeholder');
+  infoContainer.classList.add('has-content'); // Optional: For specific content styling
+
+  // Populate info container with image and text wrapped in its own div
+  infoContainer.innerHTML = `
+    <img src="${classroom.image || 'images/placeholder.jpg'}" alt="Image of ${classroom.name}" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+    <div class="info-text-content">
+        <h2>${classroom.name}</h2>
+        ${classroom.time ? `<p class="time-details">(${classroom.time})</p>` : ''}
+        ${classroom.location_type ? `<p class="location-type">${classroom.location_type}</p>` : ''}
+        ${classroom.location_note ? `<p class="location-notes">${classroom.location_note}</p>` : ''}
+    </div>
+  `;
+}

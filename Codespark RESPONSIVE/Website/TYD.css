@@ -203,12 +203,12 @@ html, body {
   }
    /* Removed .navbar__dropdown-link:last-child rule */
    .navbar__dropdown-link:hover {
-        background-color: #e7e7e7;
+       background-color: #e7e7e7;
    }
 
   /* Prevent hover triggering dropdown on mobile */
   .navbar__item:hover .navbar__dropdown {
-       display: none;
+      display: none;
   }
 
   /* Ensure JS-controlled display works */
@@ -353,7 +353,7 @@ html, body {
   background: transparent;
   cursor: pointer;
   box-sizing: border-box;
-  /* border: 1px dashed red; */
+  /* border: 1px dashed red; */ /* Uncomment to visualize markers */
 }
 
 /* Highlight Animation */
@@ -386,23 +386,39 @@ html, body {
 #floor-1 .marker[data-name="ENUGU"] { top: 36.9%; left: 86.9%; width: 12.6%; height: 21.53%; }
 #floor-1 .marker[data-name="JOS"] { top: 66.3%; left: 86.9%; width: 12.6%; height: 13.7%; }
 #floor-1 .marker[data-name="JALINGO"] { top: 86.03%; left: 82.2%; width: 10.4%; height: 13.3%; }
-/* Floor 2 Markers */
-/*#floor-2 .marker[data-name="RML (Robotics and Mechatronics Laboratory)"] { top: 0.5%; left: 0.15%; width: 15.2%; height: 9.0%; }
-#floor-2 .marker[data-name="ACR (Air Conditioning and Refridgeratory Laboratory)"] { top: 9.30%; left: 15.35%; width: 8.4%; height: 8.72%; }
-#floor-2 .marker[data-name="SST LAB1"] { top: 9.3%; left: 30.6%; width: 14.2%; height: 8.90%; }
-#floor-2 .marker[data-name="TFL (Thermofluid Lab)"] { top: 18.2%; left: 0.1%; width: 15.2%; height: 13.43%; }
-#floor-2 .marker[data-name="MML (Mechanics of Machines Lab)"] { top: 41.50%; left: 0.1%; width: 15.2%; height: 8.35%; }
-#floor-2 .marker[data-name="SST Faculty Library"] { top: 50.1%; left: 0.15%; width: 15.2%; height: 13.5%; }
-#floor-2 .marker[data-name="RM 2 (Classroom 2)"] { top: 87.15%; left: 0.3%; width: 10.5%; height: 12.4%; }
-#floor-2 .marker[data-name="RM 1 (Classroom 1)"] { top: 87.1%; left: 19.16%; width: 14.2%; height: 12.3%; }
-#floor-2 .marker[data-name="SST LAB2"] { top: 87.1%; left: 42.5%; width: 15.3%; height: 12.0%; }
-#floor-2 .marker[data-name="Tuck Shop"] { top: 87.4%; left: 86.8%; width: 12.9%; height: 11.9%; }
+
+/* Floor 2 Markers - UPDATED WITH HTML NAMES AND ESTIMATED POSITIONS */
+#floor-2 .marker[data-name="IBADAN"] { top: 41.5%; left: 73.5%; width: 6.8%; height: 6.5%; }
+#floor-2 .marker[data-name="ABEOKUTA"] { top: 41.5%; left: 65.5%; width: 6.8%; height: 6.5%; }
+#floor-2 .marker[data-name="ASABA"] { top: 41.5%; left: 57.5%; width: 6.8%; height: 6.5%; }
+#floor-2 .marker[data-name="SAPETRO BLOCK (Floor 1)"] { top: 34.5%; left: 54.5%; width: 15.0%; height: 6.5%; } /* Combined visual area */
+#floor-2 .marker[data-name="ABAKALIKI"] { top: 29.5%; left: 54.5%; width: 7.0%; height: 5.0%; } /* Above SAPETRO Block */
+#floor-2 .marker[data-name="EDITING SUITE 4"] { top: 29.5%; left: 47.0%; width: 5.0%; height: 5.0%; }
+#floor-2 .marker[data-name="EDITING SUITE 3"] { top: 29.5%; left: 40.0%; width: 5.0%; height: 5.0%; }
+#floor-2 .marker[data-name="EDITING SUITE 2"] { top: 29.5%; left: 33.0%; width: 5.0%; height: 5.0%; }
+#floor-2 .marker[data-name="EDITING SUITE 1"] { top: 29.5%; left: 26.0%; width: 5.0%; height: 5.0%; }
+#floor-2 .marker[data-name="TECCNA"] { top: 21.5%; left: 22.0%; width: 4.5%; height: 18.0%; }
+#floor-2 .marker[data-name="UYO"] { top: 31.0%; left: 27.0%; width: 13.5%; height: 28.0%; }
+#floor-2 .marker[data-name="LOKOJA"] { top: 60.5%; left: 27.0%; width: 13.5%; height: 15.0%; }
+#floor-2 .marker[data-name="BAUCHI"] { top: 21.5%; left: 5.0%; width: 16.0%; height: 13.0%; }
+#floor-2 .marker[data-name="OSHOGBO"] { top: 35.5%; left: 5.0%; width: 11.5%; height: 14.0%; }
+#floor-2 .marker[data-name="UMUAHIA"] { top: 50.5%; left: 5.0%; width: 11.5%; height: 14.0%; }
+#floor-2 .marker[data-name="NEWSROOM"] { top: 79.0%; left: 4.5%; width: 12.0%; height: 14.0%; }
+#floor-2 .marker[data-name="ART AND GRAPHICS STUDIO"] { top: 81.0%; left: 18.5%; width: 14.5%; height: 12.0%; }
+#floor-2 .marker[data-name="STUDIO ENGINEERING ROOM"] { top: 77.5%; left: 34.5%; width: 7.5%; height: 6.5%; } /* Small room next to stairs */
+#floor-2 .marker[data-name="RADIO STUDIO"] { top: 76.0%; left: 43.0%; width: 10.0%; height: 10.0%; }
+#floor-2 .marker[data-name="SOUND STUDIO"] { top: 76.0%; left: 54.0%; width: 10.0%; height: 10.0%; }
+#floor-2 .marker[data-name="PORT HARCOURT"] { top: 72.0%; left: 82.0%; width: 11.0%; height: 11.0%; }
+#floor-2 .marker[data-name="COMPUTER LAB 2"] { top: 58.0%; left: 82.0%; width: 11.0%; height: 11.0%; }
+#floor-2 .marker[data-name="COMPUTER LAB 1"] { top: 44.0%; left: 82.0%; width: 11.0%; height: 11.0%; }
+
 /* Floor 3 Markers */
 /*#floor-3 .marker[data-name="PHY LAB (Physics and Applied Electricity Lab)"] { top: 0.26%; left: 0.15%; width: 15.2%; height: 14.5%; }
 #floor-3 .marker[data-name="CHM LAB (Chemistry Lab)"] { top: 0.35%; left: 24.12%; width: 14.3%; height: 14.5%; }
 #floor-3 .marker[data-name="RM 5 (Classroom 5)"] { top: 87.3%; left: 0.3%; width: 10.5%; height: 12.33%; }
 #floor-3 .marker[data-name="RM 4 (Classroom 4)"] { top: 87.3%; left: 19.2%; width: 14.2%; height: 12.1%; }
 #floor-3 .marker[data-name="RM 3 (Classroom 3)"] { top: 87.3%; left: 42.5%; width: 15.25%; height: 12.33%; }
+*/
 
 /* Custom HTML Tooltip Styles */
 #custom-tooltip {
