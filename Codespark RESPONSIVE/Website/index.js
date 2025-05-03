@@ -18,13 +18,13 @@ const DEFAULT_COORDS = NON_SCIENCE_COORDS; // Default map shown on load
 // --- Classroom Data (with isScience property) ---
 const classrooms = [
     // Non Science Related Courses
-    { name: "ASABA", image: "/Website/CAMPUSNAV COMMERCIAL VERSION/20250502_215236.jpg", time: "10:00am - 1:00pm", location_type: "PAU-BUA 109", location_note: "• On the first floor<br>• First thing you see after climbing the cemented staircase", isScience: false },
-    { name: "JOS", image: "/Website/CAMPUSNAV COMMERCIAL VERSION/20250331_201508.jpg", time: "3:00pm - 5:00pm", location_type: "PAU-ECO 208", location_note: "• On ground floor<br>• First class you see after making the first right turn in the building", isScience: false },
-    { name: "TYD CAFETERIA", image: "/Website/CAMPUSNAV COMMERCIAL VERSION/20250502_220741.jpg", time: "8:00am - 4:00pm", location_type: "CAFETERIA", location_note: "• On ground floor<br>• On the left side of the Sapetro block which is the first place you see when you enter building<br>• Walk diagonally to the left from entrance", isScience: false },
+    { name: "ASABA", image: "/CAMPUSNAV COMMERCIAL VERSION/20250502_215236.jpg", time: "10:00am - 1:00pm", location_type: "PAU-BUA 109", location_note: "• On the first floor<br>• First thing you see after climbing the cemented staircase", isScience: false },
+    { name: "JOS", image: "/CAMPUSNAV COMMERCIAL VERSION/20250331_201508.jpg", time: "3:00pm - 5:00pm", location_type: "PAU-ECO 208", location_note: "• On ground floor<br>• First class you see after making the first right turn in the building", isScience: false },
+    { name: "TYD CAFETERIA", image: "/CAMPUSNAV COMMERCIAL VERSION/20250502_220741.jpg", time: "8:00am - 4:00pm", location_type: "CAFETERIA", location_note: "• On ground floor<br>• On the left side of the Sapetro block which is the first place you see when you enter building<br>• Walk diagonally to the left from entrance", isScience: false },
     // Science Related Courses
-    { name: "EDS (ENGINEERING DRAWING STUDIO)", image: "/Website/CAMPUSNAV COMMERCIAL VERSION/20250428_173406.jpg", time: "9:00am - 11:00am", location_type: "GET 102", location_note: "• On ground Floor<br>• First class you encounter from entrance after turning left", isScience: true },
-    { name: "SST LAB 1", image: "/Website/CAMPUSNAV COMMERCIAL VERSION/20250428_173754.jpg", time: "10:00am - 12:00pm", location_type: "COS 102", location_note: "• On the first floor <br>• Has a poster that says (Safety begins with complaince)", isScience: true },
-    { name: "CHM LAB (Chemistry Lab)", image: "/Website/CAMPUSNAV COMMERCIAL VERSION/20250502_143332.jpg", time: "2:00pm - 4:00pm", location_type: "CHM 108", location_note: "• On the second floor<br>• Has the largest door on that floor", isScience: true },
+    { name: "EDS (ENGINEERING DRAWING STUDIO)", image: "/CAMPUSNAV COMMERCIAL VERSION/20250428_173406.jpg", time: "9:00am - 11:00am", location_type: "GET 102", location_note: "• On ground Floor<br>• First class you encounter from entrance after turning left", isScience: true },
+    { name: "SST LAB 1", image: "/CAMPUSNAV COMMERCIAL VERSION/20250428_173754.jpg", time: "10:00am - 12:00pm", location_type: "COS 102", location_note: "• On the first floor <br>• Has a poster that says (Safety begins with complaince)", isScience: true },
+    { name: "CHM LAB (Chemistry Lab)", image: "/CAMPUSNAV COMMERCIAL VERSION/20250502_143332.jpg", time: "2:00pm - 4:00pm", location_type: "CHM 108", location_note: "• On the second floor<br>• Has the largest door on that floor", isScience: true },
 ];
 
 // --- UI Update Function ---
